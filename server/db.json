@@ -1,14 +1,14 @@
 {
     "films": [
         {
-            "id": "1",
+            "id": 1,
             "title": "The Dressmaker",
             "director": "Jocelyn Moorhouse",
             "synopsis": "Una mujer regresa a su pueblo natal en Australia para vengarse de quienes la marginaron, utilizando su talento como modista para desatar una elegante y oscura transformación."
         },
 
         {
-            "id": "2",
+            "id": 2,
             "title": "Into the Wild",
             "director": "Sean Penn",
             "synopsis": "Basada en hechos reales, narra el viaje de un joven que abandona todo para vivir en la naturaleza, en busca de libertad y sentido existencial."
@@ -16,7 +16,7 @@
         },
 
         {
-            "id": "3",
+            "id": 3,
             "title": "Ocean’s 8",
             "director": "Gary Ross",
             "synopsis": "Debbie Ocean lidera un grupo de mujeres talentosas para ejecutar un ambicioso robo durante la Gala del Met en Nueva York."
@@ -24,7 +24,7 @@
         },
 
          {
-            "id": "4",
+            "id": 4,
             "title": "The Devil Wears Prada",
             "director": "David Frankel",
             "synopsis": "Una joven aspirante a periodista entra al despiadado mundo de la moda como asistente de una editora implacable, enfrentando un dilema entre éxito profesional y autenticidad."
@@ -32,7 +32,7 @@
         },
 
         {
-            "id": "5",
+            "id": 5,
             "title": "Forrest Gump",
             "director": "Robert Zemeckis",
             "synopsis": "Un hombre con un coeficiente intelectual bajo vive momentos clave de la historia de EE.UU. mientras busca el amor y sigue su destino con inocencia y ternura."
@@ -40,7 +40,7 @@
         },
 
         {
-            "id": "6",
+            "id": 6,
             "title": "Gladiator",
             "director": "Ridley Scott",
             "synopsis": "Un general romano es traicionado y se convierte en esclavo, luchando como gladiador para vengar la muerte de su familia y restaurar el honor en Roma."
@@ -48,7 +48,7 @@
         },
 
         {
-            "id": "7",
+            "id": 7,
             "title": "The Notebook",
             "director": "Nick Cassavetes",
             "synopsis": "Una historia de amor a lo largo del tiempo entre una joven de clase alta y un joven trabajador, marcada por la pasión, la separación y la memoria."
@@ -56,7 +56,7 @@
         },
 
         {
-            "id": "8",
+            "id": 8,
             "title": "The Help",
             "director": "Tate Taylor",
             "synopsis": "En los años 60 en Mississippi, una aspirante a escritora blanca documenta las vidas de criadas afroamericanas, revelando las injusticias del racismo doméstico."
@@ -65,7 +65,7 @@
 
 
         {
-            "id": "9",
+            "id": 9,
             "title": "Lucy",
             "director": "Luc Bensson",
             "synopsis": "Una joven obtiene habilidades sobrehumanas tras ser forzada a transportar una droga experimental, lo que la lleva a desafiar los límites de la mente humana."
@@ -74,7 +74,7 @@
 
 
         {
-            "id": "10",
+            "id": 10,
             "title": "The Matrix",
             "director": "Lana Wachowski, Lilly Wachowski",
             "synopsis": "Un joven hacker llamado Neo descubre que la realidad que conoce es una simulación creada por máquinas para controlar a la humanidad. Al unirse a un grupo rebelde, lucha por liberar a la raza humana."

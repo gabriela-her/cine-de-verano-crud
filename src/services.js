@@ -1,9 +1,41 @@
 //URL http://localhost:3000/books
 
 //Create metodo POST
-function createFilm(newFilm){
+async function addFilm() {
+  const titleInput = document.getElementById("title").value.trim();
 
+  if (titleInput === "") {
+    alert("Por favor, escribe un título");
+    return;
+  }
+
+  const newFilm = {
+    title: titleInput,
+    director: "Desconocido",
+    synopsis: "Sin sinopsis", // para que no quede vacío
+  };
+
+  try {
+    const response = await fetch("http://localhost:4000/films", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newFilm),
+    });
+
+    if (response.ok) {
+      alert("¡Película agregada!");
+      document.getElementById("title").value = "";
+      printFilms(); // Actualizar la lista
+    } else {
+      alert("Error al agregar la película");
+    }
+  } catch (error) {
+    alert("Error: " + error.message);
+  }
 }
+
 
 //Read metodo GET
 async function getAllfilms() {
