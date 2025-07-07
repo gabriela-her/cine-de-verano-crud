@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cine de Verano </title>
 </head>
-<body>
-    <h1>Lista de pelis</h1>
-     <button onclick="printFilms()">Cargar Inf.</button>
-    <section id="film-section" ></section>
 
+<body>
+    <h1>Para ver las lista de peliculas</h1>
+    <button onclick="printFilms()">pulsa aqui</button>
+    <section id="film-section"></section>
+
+    <section>
+    <h2>Agrega tu pelicula favorita</h2>
+    <input type="text" id="title" placeholder="Título de la película" />
+    <button onclick="addFilm()">Enviar</button>
+        </section>
     <script src="./src/services.js"></script>
 </body>
+
 </html>
