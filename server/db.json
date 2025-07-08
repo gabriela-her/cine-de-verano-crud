@@ -2,7 +2,7 @@
     "films": [
         {
             "id": 1,
-            "title": "The Dressmaker",
+            "title": "La Modista",
             "director": "Jocelyn Moorhouse",
             "synopsis": "Una mujer regresa a su pueblo natal en Australia para vengarse de quienes la marginaron, utilizando su talento como modista para desatar una elegante y oscura transformación."
         },
@@ -25,7 +25,7 @@
 
          {
             "id": 4,
-            "title": "The Devil Wears Prada",
+            "title": "El diablo viste de prada",
             "director": "David Frankel",
             "synopsis": "Una joven aspirante a periodista entra al despiadado mundo de la moda como asistente de una editora implacable, enfrentando un dilema entre éxito profesional y autenticidad."
         
@@ -49,7 +49,7 @@
 
         {
             "id": 7,
-            "title": "The Notebook",
+            "title": "El Diario de Noa",
             "director": "Nick Cassavetes",
             "synopsis": "Una historia de amor a lo largo del tiempo entre una joven de clase alta y un joven trabajador, marcada por la pasión, la separación y la memoria."
         
@@ -57,7 +57,7 @@
 
         {
             "id": 8,
-            "title": "The Help",
+            "title": "Criadas y señoras",
             "director": "Tate Taylor",
             "synopsis": "En los años 60 en Mississippi, una aspirante a escritora blanca documenta las vidas de criadas afroamericanas, revelando las injusticias del racismo doméstico."
         
