@@ -2,23 +2,23 @@
 
 //Create metodo POST
 async function addFilm() {
-    const titleInput = document.getElementById("title").value.trim();
+    const titleInput = document.getElementById("title").value.trim(); //llamas el input del html 
     const directorInput = document.getElementById("director").value.trim();
-    const synopsis = document.getElementById("synopsis").value.trim();
+    const synopsisInput = document.getElementById("synopsis").value.trim();
 
-    if (titleInput === "") {
-        alert("Por favor, escribe un título");
+    if (titleInput === ""&& directorInput ===""&& synopsisInput ==="") {
+        alert("Por favor, rellena el campo de texto");
         return; //si el campo esta vacio no puedes enviarlo
     }
 
     const newFilm = {
         title: titleInput,
-        director: "Desconocido",
-        synopsis: "Sin sinopsis", // para que no quede vacío
+        director: directorInput,
+        synopsis: synopsisInput
     };
 
-    try {
-        const response = await fetch("http://localhost:4000/films", {
+    try { //es como decir intenta esto y dime que pasa si algo falla 
+        const response = await fetch("http://localhost:4000/films", { //pides algo y esperas que el servidor responda 
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -27,8 +27,8 @@ async function addFilm() {
         });
 
         if (response.ok) {
-            alert("¡Película agregada!"); //alerta emergente
-            document.getElementById("title").value = "";
+            // alert("¡Película agregada!"); //alerta emergente
+            document.getElementById("title").value = ""; // esto lo que hace es vaciar el campo de texto 
             printFilms(); // Actualizar la lista de peliculas en la pagina 
         } else {
             alert("Error al agregar la película");
@@ -54,9 +54,41 @@ async function getAllfilms() {
 getAllfilms()
 
 //Read metodo PUT
-function updateFilm(Id, editedfilm) {
+async function updateFilm() {
+  // Paso 1: Tomar los valores escritos por la persona
+  const id = document.getElementById("filmId").value.trim();      // ID de la película a cambiar
+  const title = document.getElementById("title").value.trim();    // nueva peli y asi sucesivamente  
+  const director = document.getElementById("director").value.trim();  
+  const synopsis = document.getElementById("synopsis").value.trim();  
 
+  // Paso 2: Crear un objeto con los datos nuevos como en el post
+  const editedFilm = {
+    title: title,
+    director: director,
+    synopsis: synopsis
+  };
+
+  // Paso 3: Enviar la actualización al servidor
+  try {
+    const response = await fetch(`http://localhost:4000/films/${id}`, {
+      method: "PUT", // método PUT = editar
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(editedFilm) // Convertir los datos en texto JSON
+    });
+
+    if (response.ok) {
+      alert("Película actualizada con éxito");
+      printFilms(); // Volver a mostrar la lista actualizada
+    } else {
+      alert("No se pudo actualizar la película");
+    }
+  } catch (error) {
+    alert("Error: " + error.message);
+  }
 }
+
 //Read metodo DELETE
 //delete: 
 async function deleteFilm(id) {
