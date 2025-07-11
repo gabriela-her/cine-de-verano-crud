@@ -36,11 +36,7 @@ async function addFilm() {
     } catch (error) {
         alert("Error: " + error.message);
     }
-    function clearFormFields() {
-        document.getElementById("title").value = "";
-        document.getElementById("director").value = "";
-        document.getElementById("synopsis").value = "";
-    }
+   
 }
 document.getElementById("add-btn").addEventListener("click", addFilm);
 
@@ -59,33 +55,40 @@ async function getAllfilms() {
 getAllfilms()
 
 //Read metodo PUT
+
 async function updateFilm() {
-    // Paso 1: Tomar los valores escritos por la persona
-    const id = document.getElementById("filmId").value.trim();      // ID de la película a cambiar
-    const title = document.getElementById("title").value.trim();    // nueva peli y asi sucesivamente  
+    const updateBtn = document.getElementById("update-btn");
+    const filmId = updateBtn.dataset.id;
+
+    if (!filmId) {
+        alert("No hay una película seleccionada para editar.");
+        return;
+    }
+
+    const title = document.getElementById("title").value.trim();
     const director = document.getElementById("director").value.trim();
     const synopsis = document.getElementById("synopsis").value.trim();
 
+    const editedFilm = { title, director, synopsis };
 
-    const editedFilm = {
-        title: title,
-        director: director,
-        synopsis: synopsis
-    };
-
-    //Enviar la actualización al servidor
     try {
-        const response = await fetch(`http://localhost:4000/films/${id}`, {
-            method: "PUT", // método PUT = editar
+        const response = await fetch(`http://localhost:4000/films/${filmId}`, {
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(editedFilm) // Convertir los datos en texto JSON
+            body: JSON.stringify(editedFilm)
         });
 
         if (response.ok) {
             alert("Película actualizada con éxito");
-            printFilms(); // Volver a mostrar la lista actualizada
+            printFilms();
+            clearFormFields();
+
+            // Resetear el estado del botón
+            updateBtn.removeAttribute("data-id");
+            document.getElementById("add-btn").style.display = "inline";
+            updateBtn.style.display = "none";
         } else {
             alert("No se pudo actualizar la película");
         }
@@ -93,10 +96,8 @@ async function updateFilm() {
         alert("Error: " + error.message);
     }
 }
-document.getElementById("update-btn").addEventListener("click", updateFilm);
 
 //Read metodo DELETE
-//delete: 
 async function deleteFilm(id) {
     const response = await fetch(`http://localhost:4000/films/${id}`, {
         method: "DELETE",
@@ -111,21 +112,48 @@ async function deleteFilm(id) {
     }
 }
 
-
 //Print
-let filmsContainer = document.getElementById("film-section")
+
+const filmsContainer = document.getElementById("film-section");
+
+// Función para iniciar edición 
+function startEditingFilm(id) {
+    document.getElementById("update-btn").dataset.id = id;
+    document.getElementById("add-btn").style.display = "none";
+    document.getElementById("update-btn").style.display = "inline";
+
+    fetch(`http://localhost:4000/films/${id}`)
+      .then(res => res.json())
+      .then(film => {
+          document.getElementById("title").value = film.title;
+          document.getElementById("director").value = film.director;
+          document.getElementById("synopsis").value = film.synopsis;
+      })
+      .catch(err => console.error(err));
+}
 
 async function printFilms() {
-    let listFilms = await getAllfilms(); //pinta todas las peliculas de json
-    filmsContainer.innerHTML = "" //para que no se dupliquen
-    const printFilmList = listFilms.map(film => {
-        return filmsContainer.innerHTML += `<h3>${film.title}</h3> 
-            <p>Director: ${film.director}</p>
-            <p>Sinopsis: ${film.synopsis}</p>
-            <button onclick='deleteFilm("${film.id}")'>Eliminar</button>
-            <button onclick='updateFilm("${film.id}")'>Editar</button>`
+    const listFilms = await getAllfilms();
 
-    });
-    return printFilmList
+    const filmHTML = listFilms.map(film => `
+        <h3>${film.title}</h3> 
+        <p>Director: ${film.director}</p>
+        <p>Sinopsis: ${film.synopsis}</p>
+        <button onclick='deleteFilm("${film.id}")'>Eliminar</button>
+        <button onclick='startEditingFilm("${film.id}")'>Editar</button>
+    `).join("");
+
+    filmsContainer.innerHTML = filmHTML;
 }
-document.getElementById("print-btn").addEventListener("click", printFilms);
+    // Ajustes de botones por si quedan ocultos
+    document.getElementById("print-btn").addEventListener("click", printFilms);
+
+    document.getElementById("add-btn").style.display = "inline";
+    document.getElementById("update-btn").style.display = "none";
+    document.getElementById("update-btn").addEventListener("click", updateFilm);
+
+     function clearFormFields() {
+        document.getElementById("title").value = "";
+        document.getElementById("director").value = "";
+        document.getElementById("synopsis").value = "";
+    }
